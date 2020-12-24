@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Henri Guillot</Authors>
+    <Description>Calcul de Transformée de Fourier Discrète et de la Transformée de Fourier rapide
+Fast fourier Transform  (FFT) &amp; Discrete Fourier Transform (DFT)
+ensemble de routines</Description>
+    <Copyright>Henri Guillot</Copyright>
+    <PackageIcon>packt-cs8-sharedlibrary.png</PackageIcon>
+    <PackageTags>FFT</PackageTags>
+    <RepositoryUrl>https://github.com/guihen01/Math-FFT-Lib.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="packt-cs8-sharedlibrary.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
