@@ -1,5 +1,5 @@
 # Math-FFT-Lib
-Répertoire de dépôt sur git : ...................
+Répertoire de dépôt sur git : https://github.com/guihen01/Math-FFT-Lib.git
 Pour le ploting, c'Est  dire l'Affichage graphique des résultats . J’utilise la librairie que j'ai développé qui est : Math-Plot-Lib
 Langage utilisé : C# 
 Plateforme de développement : Microsoft Visual Studio 2019
