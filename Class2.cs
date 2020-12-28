@@ -12,7 +12,8 @@ namespace FFTlib
     {
         /// <summary>
         /// calcule le nombre de points a echantillonner en fonction de la frequence d'échantillonnageet de la durée du signal
-        /// ------échantillonnage de 1 points toutes les 1/freq secondes 
+        /// ------échantillonnage de 1 points toutes les 1/freq secondes
+        /// Limitation a 1024 points
         /// </summary>
         /// <param name="Freq">: Frequence d'echantillonnage  (en Herz) </param>
         /// <param name="Creneau"> : longueur de la fenetre d'echantillonnage (en secondes) </param>
@@ -24,6 +25,7 @@ namespace FFTlib
             
             T = 1.0 / Freq;
             Nbpoints = (int)(Creneau / T);
+
             return Nbpoints;
         }
 
@@ -87,22 +89,30 @@ namespace FFTlib
 
 
         /// <summary>
-        /// generation d'un signal sinusoidal :  A.sin(2.pi.Freq.x) de x=0 a x = Nbpoints
+        /// generation d'un signal sinusoidal :  A.sin(2.pi.Freq.x) de x=0 a x = Nbpoints avec pas d'échantillonnage = 1/Fe
         /// </summary>
         /// <param name="Nbpoints">Nombre de points a générer </param>
         /// <param name="Freq">: Frequence du signal sinusoidal : A.sin(2.pi.Freq.x) (en Herz) </param>
         /// <param name="Amp">: Amplitude du signal sinusoidal : A.sin(2.pi.Freq.x) </param>
+        /// <param name="Fe">: Frequence d'échantillonnage du signal sinusoidal : A.sin(2.pi.Freq.x) </param>
         /// <returns> Ys[] : Tableau de Nbpoints qui constitue le signal : A.sin(2.pi.Freq.x)   </returns>
 
-        public static decimal[] GenSin(int Nbpoints,double Freq, double Amp)
+        public static decimal[] GenSin2piF(int Nbpoints,double Freq, double Amp, double Fe)
         {
             decimal[] ys = new decimal[Nbpoints];
+            double x = 0;
             double a = 0;
-             
-            a = (2.0 * PI * Freq);
+            double pas = 0;
+
+            // calcul du pas temporel d'Echantillonnage 
+            pas = 1 / Fe; 
+
+            x = (2.0 * PI * Freq);
+
             for (int i = 0; i < Nbpoints; i++)
             {
-                ys[i] = (decimal)(Amp * Math.Sin(a * i));
+                ys[i] = (decimal)(Amp * Math.Sin(a * x));
+                a = a + pas;
             }
                 
             return ys;

@@ -47,13 +47,14 @@
             Valeur de pi pi = 3.14116...........  
             /// </summary>
         </member>
-        <member name="M:FFTlib.SiTest.GenSin(System.Int32,System.Double,System.Double)">
+        <member name="M:FFTlib.SiTest.GenSin2piF(System.Int32,System.Double,System.Double,System.Double)">
             <summary>
-            generation d'un signal sinusoidal :  A.sin(2.pi.Freq.x) de x=0 a x = Nbpoints
+            generation d'un signal sinusoidal :  A.sin(2.pi.Freq.x) de x=0 a x = Nbpoints avec pas d'échantillonnage = 1/Fe
             </summary>
             <param name="Nbpoints">Nombre de points a générer </param>
             <param name="Freq">: Frequence du signal sinusoidal : A.sin(2.pi.Freq.x) (en Herz) </param>
             <param name="Amp">: Amplitude du signal sinusoidal : A.sin(2.pi.Freq.x) </param>
+            <param name="Fe">: Frequence d'échantillonnage du signal sinusoidal : A.sin(2.pi.Freq.x) </param>
             <returns> Ys[] : Tableau de Nbpoints qui constitue le signal : A.sin(2.pi.Freq.x)   </returns>
         </member>
         <member name="M:FFTlib.SiTest.GenSinDou(System.Int32,System.Double,System.Double,System.Double)">

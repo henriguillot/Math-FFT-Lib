@@ -11,7 +11,7 @@ ensemble de routines</Description>
     <PackageTags>FFT</PackageTags>
     <RepositoryUrl>https://github.com/guihen01/Math-FFT-Lib.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>2.1.1</Version>
+    <Version>2.1.2</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
