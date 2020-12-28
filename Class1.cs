@@ -207,13 +207,13 @@ namespace FFTlib
             return ;
         }
 
-        //Desnsite spectrale du signal ( module du signal)
+        //Magnitude du signal ( module du signal)
         //argument en emtree : 
         //          tableau de valeurs complexes : x + i.y
         // argument en sortie :
         //          tableau des modules ( SQRT(x*x + y*y))
         //          type : double
-        public static double[] Dsdoub (Complex[] Cmp)
+        public static double[] DspMagnDo (Complex[] Cmp)
         {
             double[] Ds = new double[Cmp.Length];
 
@@ -225,14 +225,14 @@ namespace FFTlib
             return Ds;
         }
 
-        //Desnsite spectrale du signal ( module du signal)
+        //Magnitude du signal ( module du signal)
         //argument en emtree : 
         //          tableau de valeurs complexes : x + i.y
         //          type : Complexe
         // argument en sortie :
         //          tableau des modules ( SQRT(x*x + y*y))
         //          type " decimal
-        public static decimal[] Dsdec(Complex[] Cmp)
+        public static decimal[] DspMagnDec(Complex[] Cmp)
         {
             decimal[] Ds = new decimal[Cmp.Length];
 
@@ -244,14 +244,14 @@ namespace FFTlib
             return Ds;
         }
 
-        //Desnsite spectrale du signal ( module du signal)
+        //MAgnitude du signal ( module du signal)
         //argument en emtree : 
         //          tableau de valeurs complexes : x + i.y
         //          type : Complexe
         // argument en sortie :
         //          tableau des modules ( SQRT(x*x + y*y))
         //          type " float
-        public static float[] Dsflot(Complex[] Cmp)
+        public static float[] DspMagnFlot(Complex[] Cmp)
         {
             float[] Ds = new float[Cmp.Length];
 

@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FFTlib</name>
+    </assembly>
+    <members>
+        <member name="T:FFTlib.SiTest">
+            <summary>
+            routines de Tests . permettant de generer des tableaux de signaux de test
+            </summary>
+        </member>
+        <member name="M:FFTlib.SiTest.Nbechant(System.Double,System.Double)">
+            <summary>
+            calcule le nombre de points a echantillonner en fonction de la frequence d'échantillonnageet de la durée du signal
+            ------échantillonnage de 1 points toutes les 1/freq secondes 
+            </summary>
+            <param name="Freq">: Frequence d'echantillonnage  (en Herz) </param>
+            <param name="Creneau"> : longueur de la fenetre d'echantillonnage (en secondes) </param>
+            <returns> Npoints  : nombre de points (échantillons) dans la fenetre </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.Random(System.Int32)">
+            <summary>
+            Instantiate random number generator using system-supplied value as seed.
+            signal de bruit blanc ( random noise signal)
+            </summary>
+            <param name="Nbpoints">Nombre de points a générer </param>
+            <returns> Rand[] : Tableau de Nbpoints qui constitue le signal aléatoire  </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.RandomD(System.Int32)">
+            <summary>
+            Instantiate random number generator using system-supplied value as seed.
+            signal de bruit blanc ( random noise signal)
+            </summary>
+            <param name="Nbpoints">Nombre de points a générer </param>
+            <returns> Rand[] : Tableau de Nbpoints qui constitue le signal aléatoire  </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.RandomF(System.Int32)">
+            <summary>
+            Instantiate random number generator using system-supplied value as seed.
+            signal de bruit blanc ( random noise signal)
+            </summary>
+            <param name="Nbpoints">Nombre de points a générer </param>
+            <returns> Rand[] : Tableau de Nbpoints qui constitue le signal aléatoire  </returns>
+        </member>
+        <member name="F:FFTlib.SiTest.PI">
+            <summary>
+            Valeur de pi pi = 3.14116...........  
+            /// </summary>
+        </member>
+        <member name="M:FFTlib.SiTest.GenSin(System.Int32,System.Double,System.Double)">
+            <summary>
+            generation d'un signal sinusoidal :  A.sin(2.pi.Freq.x) de x=0 a x = Nbpoints
+            </summary>
+            <param name="Nbpoints">Nombre de points a générer </param>
+            <param name="Freq">: Frequence du signal sinusoidal : A.sin(2.pi.Freq.x) (en Herz) </param>
+            <param name="Amp">: Amplitude du signal sinusoidal : A.sin(2.pi.Freq.x) </param>
+            <returns> Ys[] : Tableau de Nbpoints qui constitue le signal : A.sin(2.pi.Freq.x)   </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.GenSinDou(System.Int32,System.Double,System.Double,System.Double)">
+            <summary>
+            generation d'un signal sinusoidal :  A.sin(2.pi.F.x) de x=0 a x=Nbpoints/Fe
+            échantillonné a la fréquence : Fe 
+            1 point toutes les 1/Fe secondes  ( Fe en Hz et F en HZ)
+            </summary>
+            <param name="Nbpoints">Nombre de points a générer </param>
+            <param name="Freq">: Frequence du signal sinusoidal : A.sin(2.pi.Freq.x) (en Herz) </param>
+            <param name="Amp">: Amplitude du signal sinusoidal : A.sin(2.pi.Freq.x) </param>
+            <param name="Fe">: fréquence d'échantillonnage (exprimée en Hz) </param>
+            <returns> Ys[] : Tableau de Nbpoints qui constitue le signal : A.sin(2.pi.Freq.x)   </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.GenTabX(System.Double,System.Double,System.Int32)">
+             <summary>
+            genere un tableau de points ( peut etre utilisé pour l'axe des X
+             arguments en entrée
+              start : valeur de départ de l'Axe des X
+              stop : valeur de fin de l'axe des Y
+             Nombre de points a ploter
+             </summary>
+             <param name="start">valeur de départ de l'Axe des X </param>
+             <param name="stop">valeur de fin de l'Axe des X </param>
+             /// <param name="Nbpoints">Nombre de points a générer </param>
+             <returns> XD[] : Tableau des valeurs a afficher sur l'axe des abcisses </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.GenSin2Pix(System.Int32)">
+            <summary>
+            generation d'un simple signal sinusoidal :  sin(2.pi.x) de x = 0 a x = Nbpoints 
+            </summary>
+            <param name="Nbpoints">Nombre de points a générer </param>
+            <returns> Ys[] : Tableau de Nbpoints qui constitue le signal : sin(2.pi.x)   </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.GenSin256m(System.Int32)">
+            <summary>
+            generation d'un simple signal sinusoidal :  A*sin(x) de x = 0 to x = 256  : [0,256]  
+            </summary>
+            <param name="A">Amplitude du signal a générer : A*sin(x) </param>
+            <returns> Ys[] : Tableau de 256 points qui constitue le signal     </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.GenSin512m(System.Int32)">
+            <summary>
+            generation d'un simple signal sinusoidal :  A*sin(x) de x = 0 to x = 512  : [0,512]  
+            </summary>
+            <param name="A">Amplitude du signal a générer : A*sin(x) </param>
+            <returns> Ys[] : Tableau de 256 points qui constitue le signal     </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.GenSin(System.Int32,System.Decimal)">
+            <summary>
+            generation d'un simple signal sinusoidal :  A*sin(x) de x = 0 to x = NBpoints  
+            </summary>
+            <param name="Nbpoints">Nombre de points a générer </param>
+            <param name="A">Amplitude du signal a générer : A*sin(x) </param>
+            <returns> Ys[] : Tableau de Nbpoints points qui constitue le signal     </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.GenCos(System.Int32,System.Decimal)">
+            <summary>
+            generation d'un simple signal sinusoidal :  A*cos(x) de x = 0 to x = NBpoints  
+            </summary>
+            <param name="Nbpoints">Nombre de points a générer </param>
+            <param name="A">Amplitude du signal a générer : A*cos(x) </param>
+            <returns> Ys[] : Tableau de Nbpoints points qui constitue le signal     </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.GenCos512(System.Decimal)">
+            <summary>
+            generation d'un simple signal sinusoidal :  A*cos(x) de x = 0 to x = 512  
+            </summary>
+            <param name="A">Amplitude du signal a générer : A*cos(x) </param>
+            <returns> Ys[] : Tableau de Nbpoints points qui constitue le signal     </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.GenTan(System.Int32,System.Decimal)">
+            <summary>
+            generation d'un simple signal sinusoidal :  A*tg(x) de x = 0 to x = length  
+            </summary>
+            <param name="length">Nombre de points a générer </param>
+            <param name="A">Amplitude du signal a générer : A*tg(x) </param>
+            <returns> Ys[] : Tableau de Nbpoints points qui constitue le signal     </returns>
+        </member>
+        <member name="M:FFTlib.SiTest.Gen(System.Int32)">
+            <summary>
+            generation d'un simple tableau y[] de n points:  y = x de x = 0 to x = n  
+            </summary>
+            <param name="n">Nombre de points a générer </param>
+            <returns> Ys[] : Tableau de n points qui constitue le signal     </returns>
+        </member>
+        <member name="M:FFTlib.DSP.Dspdoub(System.Numerics.Complex[])">
+             <summary>
+            classe pour la Densite Spectrale de Puissance (DSP)
+            Class for power spectral density
+            ---------------------------------------------- 
+             </summary>
+             <summary>
+            Desnsité spectrale de puissance du signal ( module au carré du signal)
+            argument en entrée : 
+                      Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
+                      Type : complexe
+             argument en sortie :
+                      Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
+                      type : double
+             </summary>
+             <param name="freq">
+             </param>
+             <returns>
+             </returns>
+        </member>
+    </members>
+</doc>

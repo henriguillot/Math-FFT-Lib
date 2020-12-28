@@ -7,28 +7,35 @@ namespace FFTlib
 {
     public class DSP
     {
-        //classe pour la densite spectrale de puissance 
-        //Clas for power spectral density
-        //----------------------------------------------  
+        /// <summary>
+        ///classe pour la Densite Spectrale de Puissance (DSP)
+        ///Class for power spectral density
+        ///---------------------------------------------- 
+        /// </summary>
 
-        //Desnsité spectrale de puissance du signal ( module au carré du signal)
-        //argument en entrée : 
-        //          Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
-        //          Type : complexe
-        // argument en sortie :
-        //          Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
-        //          type : double
+        /// <summary>
+        ///Desnsité spectrale de puissance du signal ( module au carré du signal)
+        ///argument en entrée : 
+        ///          Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
+        ///          Type : complexe
+        /// argument en sortie :
+        ///          Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
+        ///          type : double
+        /// </summary>
+        /// <param name="freq">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public static double[] Dspdoub(Complex[] Cmp)
         {
             double[] Ds = new double[Cmp.Length];
             double[] Ts = new double[Cmp.Length];
 
             // Ds " contient les magnitudes : sqrt(x*x + y*y))
-            Ds = DFT.Dsdoub(Cmp);
+            Ds = DFT.DspMagnDo(Cmp);
 
-            // on eleve les magnitudes au carre :  x*x + y*y
             for (int i = 0; i < Cmp.Length; i++)
-            {   Ts[i] = Ds[i] * Ds[i];
+            {  Ts[i] = Ds[i] * Ds[i];
             }
 
             //On divise par la longueur du signal 
@@ -50,7 +57,7 @@ namespace FFTlib
             float[] Ds = new float[Cmp.Length];
             float[] Ts = new float[Cmp.Length];
 			
-            Ds = DFT.Dsflot(Cmp);
+            Ds = DFT.DspMagnFlot(Cmp);
 			
             for (int i = 0; i < Cmp.Length; i++)
             {   Ts[i] = Ds[i] * Ds[i];
@@ -76,7 +83,7 @@ namespace FFTlib
             decimal[] Ds = new decimal[Cmp.Length];
             decimal[] Ts = new decimal[Cmp.Length];
 			
-            Ds = DFT.Dsdec(Cmp);
+            Ds = DFT.DspMagnDec(Cmp);
 			
             for (int i = 0; i < Cmp.Length; i++)
             {   Ts[i] = Ds[i] * Ds[i];
@@ -100,7 +107,7 @@ namespace FFTlib
         {
             decimal[] Ds = new decimal[Cmp.Length];
 
-            Ds = DFT.Dsdec(Cmp);
+            Ds = DFT.DspMagnDec(Cmp);
 
             for (int i = 0; i < Cmp.Length; i++)
             {   Ts[i] = Ds[i] * Ds[i];
