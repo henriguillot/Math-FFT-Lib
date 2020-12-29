@@ -5,6 +5,9 @@ using System.Numerics;
 
 namespace FFTlib
 {
+    /// <summary>
+    /// Class for Powr Spectral Density ( Densité spectrale de puissance)
+    /// </summary>
     public class DSP
     {
         /// <summary>
@@ -15,17 +18,11 @@ namespace FFTlib
 
         /// <summary>
         ///Desnsité spectrale de puissance du signal ( module au carré du signal)
-        ///argument en entrée : 
-        ///          Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
-        ///          Type : complexe
-        /// argument en sortie :
-        ///          Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
-        ///          type : double
+        ///argument en entrée : Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
+        ///argument en sortie : Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
         /// </summary>
-        /// <param name="freq">
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <param name="Cmp"> tableau des valeurs complexes : x + i.y d'une transformée de Fourier  </param>
+        /// <returns> Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée </returns>
         public static double[] Dspdoub(Complex[] Cmp)
         {
             double[] Ds = new double[Cmp.Length];
@@ -46,12 +43,16 @@ namespace FFTlib
             return Ts;
         }
 
-        //Desnsité spectrale de puissance du signal ( module au carré du signal)
-        //argument en entrée : 
-        //          Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
-        // argument en sortie :
-        //          Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
-        //          type : float
+        /// <summary>
+        ///Desnsité spectrale de puissance du signal ( module au carré du signal)
+        ///argument en entrée : 
+        ///          Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
+        /// argument en sortie :
+        ///          Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
+        ///          type : float
+        /// </summary>
+        /// <param name="Cmp"> Cmp[] tableau des valeurs complexes : x + i.y d'une transformée de Fourier  </param>
+        /// <returns> Ts[] : tableau des modules elevés au carré (x*x + y*y)) de la transformée </returns>
         public static float[] Dspflot(Complex[] Cmp)
         {
             float[] Ds = new float[Cmp.Length];
@@ -72,12 +73,16 @@ namespace FFTlib
             return Ts;
         }
 
-        //Desnsité spectrale de puissance du signal ( module au carré du signal)
-        //argument en entrée : 
-        //          Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
-        // argument en sortie :
-        //          Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
-        //          type : decimal
+        /// <summary>
+        ///Densité spectrale de puissance du signal ( module au carré du signal)
+        ///argument en entrée : 
+        ///          Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
+        /// argument en sortie :
+        ///          Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
+        ///          type : decimal
+        /// </summary>
+        /// <param name="Cmp"> Cmp[] tableau des valeurs complexes : x + i.y d'une transformée de Fourier  </param>
+        /// <returns> Ts[] : tableau des modules elevés au carré (x*x + y*y)) de la transformée </returns>
         public static decimal[] Dspdeci(Complex[] Cmp)
         {
             decimal[] Ds = new decimal[Cmp.Length];
@@ -97,12 +102,16 @@ namespace FFTlib
             return Ts;
         }
 
-        //Desnsité spectrale de puissance du signal ( module au carré du signal)
-        //argument en entrée : 
-        //          Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
-        // argument en sortie :
-        //          Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
-        //          type : decimal
+        /// <summary>
+        ///Desnsité spectrale de puissance du signal ( module au carré du signal)
+        ///argument en entrée : 
+        ///          Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
+        /// argument en sortie :
+        ///          Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
+        ///         type : decimal
+        /// <summary>
+        /// <param name="Cmp"> Cmp[] tableau des valeurs complexes : x + i.y d'une transformée de Fourier  </param>
+        /// <param name="Ts"> Ts[] : tableau des modules elevés au carré (x*x + y*y)) de la transformée </param>
         public static void Ds2(Complex[] Cmp, decimal[] Ts)
         {
             decimal[] Ds = new decimal[Cmp.Length];

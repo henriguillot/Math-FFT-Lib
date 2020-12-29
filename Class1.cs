@@ -67,10 +67,46 @@ namespace FFTlib
 
     }
 
+    /// <summary>
+    /// Class dedicated to DFT (Discrete Fourier Transform)
+    /// </summary>
     public class DFT    // Discrete Fourier Transform
     {
-        // calcul de DFT (discrete Fourier Transform)
-        // version avec argument en entree de " type complex[] "
+        /// <summary>
+        /// calcule la frequence d'échantillonnage en fonction du nombre d'échantillons et de la durée du signal
+        /// sampling frequency of Fe Hz   
+        /// </summary>
+        /// <param name="Nbechant">Nbechant : nombre de points (échantillons) dans la fenetre</param>
+        /// <param name="Freq"> : Frequence du signal (en Herz) </param>
+        /// <param name="Duree"> : longueur de la fenetre d'echantillonnage (en secondes) </param>
+        /// <returns>  : Fréquence d'echantillonnage  (en Herz)   </returns>
+        public static double CalcFreqSamp(int Nbechant, double Freq, double Duree)
+        {
+            double Te; //pas temporel d'echantillonnage : Te
+            double Fe;       // fréquence d'echantillonnage
+
+            Te = Duree / Nbechant;  //sample 1 échantillon toutes les Te secondes
+            Fe = 1 / Te;  // frequence d echantillonnage : Fe : 1 échantillon toutes les Fe/nbechant Hz 
+
+            //vérification de la règle de Nyquist 
+            if (Fe <= (2*Freq))
+            {
+                Console.WriteLine("sampling frequency must be >= 2 * (MAx signalfrequency)");
+                Console.WriteLine("sampling frequency = {0} Hz", Fe);
+                Console.WriteLine("signal MAx frequency = {0} Hz", Freq);
+            }
+
+            //Console.WriteLine("Frequence d echantillonnage : Fe = {0}", Fe)
+            return Fe;
+        }
+
+
+        /// <summary>
+        /// calcul de DFT (discrete Fourier Transform)
+        /// version avec argument en entree de " type complex[] "
+        /// </summary>
+        /// <param name="x"> x[] : array of complex values </param>
+        /// <returns>  DFT[] array of complex values  </returns> 
         public static complex[] DFTv1(complex[] x)
         {
             int N = x.Length;
@@ -88,13 +124,17 @@ namespace FFTlib
             return X;
         }
 
-        // calcul de DFT (discrete Fourier Transform)
-        // version avec argument en entree de " type float[] "
-        // avec type Complex defini dans System.Numerics
-        //argument en entree : 
-        //      x[] : Tableau des points echantillonés temporellement
-        // argument en sortie : 
-        //      tableau des resultats sous forme de nombres complexes : Tc[N] : Re + i.Im
+        /// <summary>
+        /// calcul de DFT (discrete Fourier Transform)
+        /// version avec argument en entree de " type float[] "
+        /// avec type Complex defini dans System.Numerics
+        ///argument en entree : 
+        ///      x[] : Tableau des points echantillonés temporellement
+        /// argument en sortie : 
+        ///      tableau des resultats sous forme de nombres complexes : Tc[N] : Re + i.Im
+        /// </summary> 
+        /// <param name="x"> x[] : array of (float) values on which DFT has to be performed </param>
+        /// <returns>  DFT[] array of (complex) values DFT </returns>  
         public static Complex[] DFTv2(float[] x)    //le type Complex est defini dans System.Numerics
         {
             int N = x.Length;
@@ -115,13 +155,17 @@ namespace FFTlib
             return X;
         }
 
-        // calcul de DFT (discrete Fourier Transform) sur N points
-        // version avec argument en entree de " type decimal[] "
-        // avec type Complex defini dans System.Numerics
-        //argument en entree : 
-        //      x[] : Tableau des points echantillonés temporellement
-        // argument en sortie : 
-        //      tableau des resultats sous forme de nombres complexes : Tc[N] : Re + i.Im
+        /// <summary>
+        /// calcul de DFT (discrete Fourier Transform) sur N points
+        /// version avec argument en entree de " type decimal[] "
+        /// avec type Complex defini dans System.Numerics
+        ///argument en entree : 
+        ///      x[] : Tableau des points echantillonés temporellement
+        /// argument en sortie : 
+        ///      tableau des resultats sous forme de nombres complexes : Tc[N] : Re + i.Im
+        /// </summary>
+        /// <param name="x"> x[] : array of (decimal) values on which DFT has to be performed </param>
+        /// <returns>  DFT[] array of (complex) values DFT </returns>  
         public static Complex[] DFTv2(decimal[] x)    //le type Complex est defini dans System.Numerics
         {
             int N = x.Length;
@@ -143,13 +187,17 @@ namespace FFTlib
             return Tc;
         }
 
-        // calcul de DFT (discrete Fourier Transform) sur N points
-        // version avec argument en entree de " type double[] "
-        // avec type Complex defini dans System.Numerics
-        //argument en entree : 
-        //      x[] : Tableau des points echantillonés temporellement
-        // argument en sortie : 
-        //      tableau des resultats sous forme de nombres complexes : Tc[N] : Re + i.Im
+        /// <summary>
+        /// calcul de DFT (discrete Fourier Transform) sur N points
+        /// version avec argument en entree de " type double[] "
+        /// avec type Complex defini dans System.Numerics
+        ///argument en entree : 
+        ///      x[] : Tableau des points echantillonés temporellement
+        /// argument en sortie : 
+        ///      tableau des resultats sous forme de nombres complexes : Tc[N] : Re + i.Im
+        /// </summary>
+        /// <param name="x"> x[] : array of (double) values on which DFT has to be performed </param>
+        /// <returns>  DFT[] array of (complex) values DFT </returns>   
         public static Complex[] DFTv2(double[] x)    //le type Complex est defini dans System.Numerics
         {
             int N = x.Length;
@@ -171,15 +219,20 @@ namespace FFTlib
             return Tc;
         }
 
-        // calcul de DFT (discrete Fourier Transform) sur N points
-        // version avec argument en entree de " type double[] "
-        // avec type Complex defini dans System.Numerics
-        //argument en entree : 
-        //      double Ti[] : Tableau des points echantillonés temporellement
-        // argument en sortie : 
-        //      tableau des resultats partie Reelle :  double Re[N]    : x
-        //      tableau des resultats partie Imaginaire : double Im[N] : y 
-        //      x + i.y
+        /// <summary>
+        /// calcul de DFT (discrete Fourier Transform) sur N points
+        /// version avec argument en entree de " type double[] "
+        /// avec type Complex defini dans System.Numerics
+        ///argument en entree : 
+        ///      double Ti[] : Tableau des points echantillonés temporellement
+        /// argument en sortie : 
+        ///      tableau des resultats partie Reelle :  double Re[N]    : x
+        ///      tableau des resultats partie Imaginaire : double Im[N] : y 
+        ///      x + i.y
+        /// </summary>
+        /// <param name="Ti"> Ti[] : array of (double) values on which DFT has to be performed </param>
+        /// <param name="Re"> Re[] : array of (double) returning the Real part of the DFT </param>  
+        /// <param name="Im"> Im[] : array of (double) returning the Imaginary part of the DFT </param>  
         public static void DFTvp( double[] Ti, double[] Re, double[] Im)    //le type Complex est defini dans System.Numerics
         {
             double Ree = 0.0;
@@ -207,12 +260,16 @@ namespace FFTlib
             return ;
         }
 
-        //Magnitude du signal ( module du signal)
-        //argument en emtree : 
-        //          tableau de valeurs complexes : x + i.y
-        // argument en sortie :
-        //          tableau des modules ( SQRT(x*x + y*y))
-        //          type : double
+        /// <summary>
+        ///Magnitude du signal ( module du signal)
+        ///argument en emtree : 
+        ///          tableau de valeurs complexes : x + i.y
+        /// argument en sortie :
+        ///          tableau des modules ( SQRT(x*x + y*y))
+        ///          type : double
+        /// </summary>
+        /// <param name="Cmp"> Cmp[] : array of (Complex) values on which DFT Magnitude has to be calculated </param>
+        /// <returns>  Ds[] array of (double) values representing Magnitude of the DFT </returns> 
         public static double[] DspMagnDo (Complex[] Cmp)
         {
             double[] Ds = new double[Cmp.Length];
@@ -225,13 +282,17 @@ namespace FFTlib
             return Ds;
         }
 
-        //Magnitude du signal ( module du signal)
-        //argument en emtree : 
-        //          tableau de valeurs complexes : x + i.y
-        //          type : Complexe
-        // argument en sortie :
-        //          tableau des modules ( SQRT(x*x + y*y))
-        //          type " decimal
+        /// <summary>
+        ///Magnitude du signal ( module du signal)
+        ///argument en emtree : 
+        ///          tableau de valeurs complexes : x + i.y
+        ///         type : Complexe
+        /// argument en sortie :
+        ///          tableau des modules ( SQRT(x*x + y*y))
+        ///          type " decimal
+        /// </summary>
+        /// <param name="Cmp"> Cmp[] : array of (Complex) values on which DFT Magnitude has to be calculated </param>
+        /// <returns>  Ds[] array of (decimal) values representing Magnitude of the DFT </returns> 
         public static decimal[] DspMagnDec(Complex[] Cmp)
         {
             decimal[] Ds = new decimal[Cmp.Length];
@@ -244,13 +305,17 @@ namespace FFTlib
             return Ds;
         }
 
-        //MAgnitude du signal ( module du signal)
-        //argument en emtree : 
-        //          tableau de valeurs complexes : x + i.y
-        //          type : Complexe
-        // argument en sortie :
-        //          tableau des modules ( SQRT(x*x + y*y))
-        //          type " float
+        /// <summary>
+        ///MAgnitude du signal ( module du signal)
+        ///argument en emtree : 
+        ///          tableau de valeurs complexes : x + i.y
+        ///          type : Complexe
+        /// argument en sortie :
+        ///          tableau des modules ( SQRT(x*x + y*y))
+        ///          type " float
+        /// </summary> 
+        /// <param name="Cmp"> Cmp[] : array of (Complex) values on which DFT Magnitude has to be calculated </param>
+        /// <returns>  Ds[] array of (float) values representing Magnitude of the DFT </returns> 
         public static float[] DspMagnFlot(Complex[] Cmp)
         {
             float[] Ds = new float[Cmp.Length];
@@ -263,13 +328,19 @@ namespace FFTlib
             return Ds;
         }
 
-        // Obtention de DFT (discrete Fourier Transform)
-        // version avec argument en entree de " type float[] "
-        // avec type Complex defini dans System.Numerics
-        // arguments en sortie : 
-        //      tableau des resultats sous forme de nombre complexe : Tc[256] : Re + i.Im
-        //      tableau des parties imaginaires :  Im[256]
-        //      tableau des parties Réelles :  Re[256]
+        /// <summary>
+        /// Obtention de DFT (discrete Fourier Transform)
+        /// version avec argument en entree de " type float[] "
+        /// avec type Complex defini dans System.Numerics
+        /// arguments en sortie : 
+        ///      tableau des resultats sous forme de nombre complexe : Tc[256] : Re + i.Im
+        ///      tableau des parties imaginaires :  Im[256]
+        ///      tableau des parties Réelles :  Re[256]
+        /// </summary> 
+        /// <param name="y">   y[] : array of 256 (float) values on which DFT has to be performed </param>
+        /// <param name="Re"> Re[] : array of 256 (decimal) returning the Real part of the DFT </param>  
+        /// <param name="Im"> Im[] : array of 256 (decimal) returning the Imaginary part of the DFT </param>  
+        /// <returns>  Tc[] array of 256 (complex) values DFT </returns>    
         public static Complex[] DFT256(float[] y, decimal[] Re, decimal[] Im)       //Calcul dune DFT sur un tableau de 256 points 
         {
             //calcul de la DFT sur le tableau entrant y[]
@@ -291,13 +362,19 @@ namespace FFTlib
             return Tc;
         }
 
-        // Obtention de DFT (discrete Fourier Transform)
-        // version avec argument en entree de " type decimal[] "
-        // avec type Complex defini dans System.Numerics
-        // arguments en sortie : 
-        //      tableau des resultats sous forme de nombre complexe : Tc[256] : Re + i.Im
-        //      tableau des parties imaginaires :  Im[256]
-        //      tableau des parties Réelles :  Re[256]
+        /// <summary>
+        /// Obtention de DFT (discrete Fourier Transform)
+        /// version avec argument en entree de " type decimal[] "
+        /// avec type Complex defini dans System.Numerics
+        /// arguments en sortie : 
+        ///      tableau des resultats sous forme de nombre complexe : Tc[256] : Re + i.Im
+        ///      tableau des parties imaginaires :  Im[256]
+        ///      tableau des parties Réelles :  Re[256]
+        /// </summary> 
+        /// <param name="y">  y[] : array of 256 (decimal) values on which DFT has to be performed </param>
+        /// <param name="Re"> Re[] : array of 256 (decimal) returning the Real part of the DFT </param>  
+        /// <param name="Im"> Im[] : array of 256 (decimal) returning the Imaginary part of the DFT </param>  
+        /// <returns>  Tc[] array of 256 (complex) values DFT </returns>    
         public static Complex[] DFT256(decimal[] y, decimal[] Re, decimal[] Im)       //Calcul dune DFT sur un tableau de 256 points 
         {
             //calcul de la DFT surle tableau entrant y[]
@@ -319,13 +396,19 @@ namespace FFTlib
             return Tc;
         }
 
-        // Obtention de DFT (discrete Fourier Transform)
-        // version avec argument en entree de " type decimal[] "
-        // avec type Complex defini dans System.Numerics
-        // arguments en sortie : 
-        //      tableau des resultats sous forme de nombre complexe : Tc[N] : Re + i.Im
-        //      tableau des parties imaginaires :  Im[N]
-        //      tableau des parties Réelles :  Re[N]
+        /// <summary>
+        /// Obtention de DFT (discrete Fourier Transform)
+        /// version avec argument en entree de " type decimal[] "
+        /// avec type Complex defini dans System.Numerics
+        /// arguments en sortie : 
+        ///      tableau des resultats sous forme de nombre complexe : Tc[N] : Re + i.Im
+        ///      tableau des parties imaginaires :  Im[N]
+        ///      tableau des parties Réelles :  Re[N]
+        /// </summary> 
+        /// <param name="y">  y[] : array of (decimal) values on which DFT has to be performed </param>
+        /// <param name="Re"> Re[] : array of (decimal) returning the Real part of the DFT </param>  
+        /// <param name="Im"> Im[] : array of (decimal) returning the Imaginary part of the DFT </param>  
+        /// <returns>  Tc[] array of (complex) values DFT </returns>    
         public static Complex[] DFTN(decimal[] y, decimal[] Re, decimal[] Im)       //Calcul dune DFT sur un tableau de N points 
         {
             //calcul de la DFT surle tableau entrant y[]
@@ -347,14 +430,19 @@ namespace FFTlib
             return Tc;
         }
 
-        // Obtention de DFT (discrete Fourier Transform) calculé sur N points
-        // version avec argument en entree de " type float[] "
-        // avec type Complex defini dans System.Numerics
-        // arguments en sortie : 
-        //      tableau des resultats sous forme de nombre complexe : Tc[N] : Re + i.Im
-        //      tableau des parties imaginaires :  Im[N]
-        //      tableau des parties Réelles :  Re[N]
-        
+        /// <summary>
+        /// Obtention de DFT (discrete Fourier Transform) calculé sur N points
+        /// version avec argument en entree de " type float[] "
+        /// avec type Complex defini dans System.Numerics
+        /// arguments en sortie : 
+        ///      tableau des resultats sous forme de nombre complexe : Tc[N] : Re + i.Im
+        ///      tableau des parties imaginaires :  Im[N]
+        ///      tableau des parties Réelles :  Re[N]
+        /// </summary>
+        /// <param name="y">  y[] : array of (float) values on which DFT has to be performed </param>
+        /// <param name="Re"> Re[] : array of (decimal) returning the Real part of the DFT </param>  
+        /// <param name="Im"> Im[] : array of (decimal) returning the Imaginary part of the DFT </param>  
+        /// <returns>  Tc[] array of (complex) values DFT </returns>   
         public static Complex[] DFTN(float[] y, decimal[] Re, decimal[] Im)       //Calcul dune DFT sur un tableau de N points 
         {
             //calcul de la DFT surle tableau entrant y[]
@@ -378,13 +466,19 @@ namespace FFTlib
             return Tc;
         }
 
-        // Obtention de DFT (discrete Fourier Transform) calculé sur N points
-        // version avec argument en entree de " type double[] "
-        // avec type Complex defini dans System.Numerics
-        // arguments en sortie : 
-        //      tableau des resultats sous forme de nombre complexe : Tc[N] : Re + i.Im
-        //      tableau des parties imaginaires :  Im[N]
-        //      tableau des parties Réelles :  Re[N]
+        /// <summary>
+        /// Obtention de DFT (discrete Fourier Transform) calculé sur N points
+        /// version avec argument en entree de " type double[] "
+        /// avec type Complex defini dans System.Numerics
+        /// arguments en sortie : 
+        ///      tableau des resultats sous forme de nombre complexe : Tc[N] : Re + i.Im
+        ///      tableau des parties imaginaires :  Im[N]
+        ///      tableau des parties Réelles :  Re[N]
+        /// </summary>
+        /// <param name="y">  y[] : array of (double) values on which DFT has to be performed </param>
+        /// <param name="Re"> Re[] : array of (decimal) returning the Real part of the DFT </param>  
+        /// <param name="Im"> Im[] : array of (decimal) returning the Imaginary part of the DFT </param>  
+        /// <returns>  Tc[] array of (complex) values DFT </returns>   
         public static Complex[] DFTN(double[] y, decimal[] Re, decimal[] Im)       //Calcul dune DFT sur un tableau de N points 
         {
             //calcul de la DFT surle tableau entrant y[]
@@ -410,17 +504,18 @@ namespace FFTlib
 
     }
 
-
-
-
-
+    /// <summary>
+    /// FFT
+    /// </summary>
     public class FFT
     {
         //do nothing for now  .... it is for test phase 1
         public static double Multiply(double a, double b)
         { return a * b; }
 
-        //Calcul dune FFT sur un tableau de 256 points 
+        /// <summary>
+        /// Calcul dune FFT sur un tableau de 256 points 
+        /// </summary>
         public static decimal[] FFT256(decimal[] y)
         {
             //calcul de la FFT surle tableau entrant y[]
@@ -429,7 +524,9 @@ namespace FFTlib
             return T;
         }
 
-        //Calcul dune FFT sur un tableau de 512 points 
+        /// <summary>
+        /// Calcul dune FFT sur un tableau de 512 points 
+        /// </summary>
         public static decimal[] FFT512(decimal[] y)
         {
             //calcul de la FFT surle tableau entrant y[]
@@ -438,7 +535,9 @@ namespace FFTlib
             return T;
         }
 
-        //Calcul dune FFT sur un tableau de 1024 points
+        /// <summary>
+        /// Calcul dune FFT sur un tableau de 1024 points 
+        /// </summary>
         public static decimal[] FFT1024(decimal[] y)
         {
             //calcul de la FFT surle tableau entrant y[]
@@ -452,7 +551,9 @@ namespace FFTlib
             return T;
         }
 
-        //Calcul d<une FFT sur un tableau de n points , longueur du tableau variable
+        /// <summary>
+        /// Calcul dune FFT sur un tableau de N points 
+        /// </summary>
         public static decimal[] FFTN(decimal[] y)
         {
             //calcul de la FFT surle tableau entrant y[]
