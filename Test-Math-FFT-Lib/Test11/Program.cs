@@ -22,10 +22,10 @@ namespace Test11
             double Fe;  //Frequence d echantllonnage
 
             //calcul de la frequence d echantillonnage FE
-            //sampling frequency of Fe Hz  and a signal duration of 0.5 secondes.  avec une fréquence d'échantillonnage de Fe 
+            //sampling frequency of Fe Hz  and a signal duration of 2 secondes.  avec une fréquence d'échantillonnage de Fe 
 
             nbechant = 256;
-            double Duree = 2;
+            double Duree = 2; // 2 secondes
 
             double Te; //pas temporel d echantillonnage : Te
             Te = Duree / nbechant;
