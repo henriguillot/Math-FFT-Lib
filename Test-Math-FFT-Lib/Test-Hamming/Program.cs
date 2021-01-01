@@ -24,7 +24,7 @@ namespace Test13
             //sampling frequency of Fe Hz  and a signal duration of 2 secondes.  avec une fréquence d'échantillonnage de Fe 
 
             nbechant = 256;
-            double Duree = 0.05; // 5 milisecondes
+            double Duree = 0.05; // 0.05 secondes
 
             double Te; //pas temporel d echantillonnage : Te
             Te = Duree / nbechant;
