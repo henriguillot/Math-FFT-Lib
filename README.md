@@ -13,4 +13,5 @@ Librairie de routines pour afficher des courbes : ici: résultats des calculs de
 Code utilisé ; C# et Python
 Plateforme de développement : Microsoft Visual Studio 2019
 
-
+# Environnement de test
+https://github.com/guihen01/Math-FFT-Lib/blob/main/Readme.pdf
