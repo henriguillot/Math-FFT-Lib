@@ -15,3 +15,6 @@ Plateforme de développement : Microsoft Visual Studio 2019
 
 # Environnement de test
 https://github.com/guihen01/Math-FFT-Lib/blob/main/Readme.pdf
+
+# Exemple d'utilisation
+https://github.com/guihen01/Math-FFT-Lib/blob/main/Test-Math-FFT-Lib/Test-Hanning/Test2/Test2%20(Resultats).pdf
