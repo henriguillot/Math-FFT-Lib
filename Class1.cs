@@ -516,12 +516,52 @@ namespace FFTlib
         /// <summary>
         /// Calcul dune FFT sur un tableau de 256 points 
         /// </summary>
-        public static decimal[] FFT256(decimal[] y)
+        /// <param name="Y">  Y[] : array of 256 (decimal) values on which FFT has to be performed </param>
+        /// <returns>  Tc[] array of 256 (complex) values of FFT </returns> 
+        public static Complex[] FFT256(decimal[] Y)
         {
-            //calcul de la FFT surle tableau entrant y[]
-            decimal[] T = new decimal[256];
-            //resultant sortant dans le tableau T[]
-            return T;
+            //calcul de la FFT surle tableau entrant Y[]
+            int N = Y.Length;
+            if (N != 256)
+            {
+                Console.WriteLine("nombre de points doit etre = 256");
+                Console.WriteLine("FFT sera calculé sur 256 points seulement avec FFT256() ");
+                System.Environment.Exit(1);
+            }
+            
+            Complex[] Tc = new Complex[256];    // résultat de la FFT
+            Complex[] Ec = new Complex[128];  // Even (pair) 
+            Complex[] Oc = new Complex[128];  // Od (impair)
+
+            decimal[] E = new decimal[128];
+            decimal[] O = new decimal[128];
+            double Re, Im;
+
+            for (int k = 0; k < 128; k++)
+            {
+                E[k] = Y[2 * k];
+                O[k] = Y[(2 * k) + 1];
+            }
+            Ec = DFT.DFTv2(E);    // Ec ( Even - pair) DFT of Even indexed pat of signal          
+            Oc = DFT.DFTv2(O);    // Odd ( Odd - impair) DFT of Odd indexed pat of signal 
+
+            for (int k = 0; k < 128; k++)
+            {
+                Complex temp = new Complex(0, 0);
+                Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)256));
+                Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)256));
+                temp = new Complex(Re, Im);
+                Oc[k] = Oc[k] * temp;
+            }
+
+            for (int k = 0; k < 128; k++)
+            {
+                Tc[k] = Ec[k] + Oc[k];            // Tc[k] = Ec[k] + exp(-2.i.pi.k/N).Oc[k]
+                Tc[k + (N / 2)] = Ec[k] - Oc[k];    // Tc[k+N/2] = Ec[k] - exp(-2.i.pi.k/N).Oc[k]
+            }
+
+
+            return Tc;
         }
 
         /// <summary>
@@ -535,9 +575,9 @@ namespace FFTlib
             //resultant sortant dans le tableau Tc[]
 
             int N = Y.Length;
-            if (N > 512)
+            if (N != 512)
             {
-                Console.WriteLine("nombre de points doit etre <= 512");
+                Console.WriteLine("nombre de points doit etre = 512");
                 Console.WriteLine("FFT sera calcul sur 512 points seulement");
             }
 
@@ -559,9 +599,9 @@ namespace FFTlib
 
             for (int k = 0; k < 256; k++)
             {
-                Complex temp;
-                Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)1024));
-                Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)1024));
+                Complex temp = new Complex(0, 0);
+                Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)512));
+                Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)512));
                 temp = new Complex(Re, Im);
                 Oc[k] = Oc[k] * temp;
             }
@@ -586,10 +626,11 @@ namespace FFTlib
             //resultant sortant dans le tableau Tc[]
 
             int N = Y.Length;
-            if (N > 512)
+            if (N != 512)
             {
-                Console.WriteLine("nombre de points doit etre <= 512");
-                Console.WriteLine("FFT sera calcul sur 512 points seulement");
+                Console.WriteLine("nombre de points doit etre = 512");
+                Console.WriteLine("FFT sera calculé sur 512 points seulement avec FFT512() ");
+                System.Environment.Exit(1);
             }
 
             Complex[] Tc = new Complex[512];    // résultat de la FFT
@@ -610,9 +651,9 @@ namespace FFTlib
 
             for (int k = 0; k < 256; k++)
             {
-                Complex temp;
-                Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)1024));
-                Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)1024));
+                Complex temp = new Complex(0, 0);
+                Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)512));
+                Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)512));
                 temp = new Complex(Re, Im);
                 Oc[k] = Oc[k] * temp;
             }
@@ -637,10 +678,11 @@ namespace FFTlib
             //resultant sortant dans le tableau Tc[]
 
             int N = Y.Length;
-            if (N > 1024)
+            if (N != 1024)
             {
-                Console.WriteLine("nombre de points doit etre <= 1024");
+                Console.WriteLine("nombre de points doit etre = 1024");
                 Console.WriteLine("FFT sera calculé sur 1024 points seulement");
+                System.Environment.Exit(1);
             }
 
             Complex[] Tc = new Complex[1024];    // résultat de la FFT
@@ -661,7 +703,7 @@ namespace FFTlib
 
             for (int k = 0; k < 512; k++)
             {
-                Complex temp;
+                Complex temp = new Complex(0, 0);
                 Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)1024));
                 Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)1024));
                 temp = new Complex(Re, Im);
@@ -689,9 +731,10 @@ namespace FFTlib
             //resultant sortant dans le tableau Tc[]
 
             int N = Y.Length;
-            if (N > 1024)
-            {   Console.WriteLine("nombre de points doit etre <= 1024");
-                Console.WriteLine("FFT sera calculé sur 1024 points seulement");
+            if (N != 1024)
+            {   Console.WriteLine("nombre de points doit etre = 1024");
+                Console.WriteLine("FFT sera calculé sur 1024 points seulement avec FFT1024() ");
+                System.Environment.Exit(1);
             }  
 
             Complex[] Tc = new Complex[1024];    // résultat de la FFT
@@ -712,7 +755,7 @@ namespace FFTlib
 
             for (int k = 0; k < 512; k++)
             {
-                Complex temp;
+                Complex temp = new Complex(0, 0);
                 Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)1024));
                 Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)1024));
                 temp = new Complex(Re, Im);
@@ -750,15 +793,16 @@ namespace FFTlib
 
             for (int k = 0; k < N/2; k++)
             {
-                E[k] = Y[2 * k];
-                O[k] = Y[(2 * k) + 1];
+                E[k] = Y[2*k];
+                O[k] = Y[(2*k) + 1];
             }
+
             Ec = DFT.DFTv2(E);    // Ec ( Even - pair) DFT of Even indexed pat of signal          
             Oc = DFT.DFTv2(O);    // Odd ( Odd - impair) DFT of Odd indexed pat of signal 
 
             for (int k = 0; k < N/2; k++)
             {
-                Complex temp;
+                Complex temp = new Complex(0, 0);
                 Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)N));
                 Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)N));
                 temp = new Complex(Re, Im);
@@ -796,25 +840,27 @@ namespace FFTlib
 
             for (int k = 0; k < N/2; k++)
             {
-                E[k] = Y[2 * k];
-                O[k] = Y[(2 * k) + 1];
+                E[k] = Y[2*k];
+                O[k] = Y[(2*k) + 1];
             }
             Ec = DFT.DFTv2(E);    // Ec ( Even - pair) DFT of Even indexed pat of signal          
             Oc = DFT.DFTv2(O);    // Odd ( Odd - impair) DFT of Odd indexed pat of signal 
-
-            for (int k = 0; k < N / 2; k++)
+            //Ec = FFT.FFTN(E);    // Ec ( Even - pair) DFT of Even indexed pat of signal          
+            //Oc = FFT.FFTN(O);    // Odd ( Odd - impair) DFT of Odd indexed pat of signal 
+            
+            for (int k = 0; k < N/2; k++)
             {
-                Complex temp;
+                Complex temp = new Complex (0,0);
                 Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)N));
                 Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)N));
                 temp = new Complex(Re, Im);
                 Oc[k] = Oc[k] * temp;
             }
 
-            for (int k = 0; k < N / 2; k++)
+            for (int k = 0; k < N/2; k++)
             {
                 Tc[k] = Ec[k] + Oc[k];            // Tc[k] = Ec[k] + exp(-2.i.pi.k/N).Oc[k]
-                Tc[k + (N / 2)] = Ec[k] - Oc[k];    // Tc[k+N/2] = Ec[k] - exp(-2.i.pi.k/N).Oc[k]
+                Tc[k + (N/2)] = Ec[k] - Oc[k];    // Tc[k+N/2] = Ec[k] - exp(-2.i.pi.k/N).Oc[k]
             }
 
             return Tc;
