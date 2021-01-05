@@ -4,6 +4,249 @@
         <name>FFTlib</name>
     </assembly>
     <members>
+        <member name="T:FFTlib.DFT">
+            <summary>
+            Class dedicated to DFT (Discrete Fourier Transform)
+            </summary>
+        </member>
+        <member name="M:FFTlib.DFT.CalcFreqSamp(System.Int32,System.Double,System.Double)">
+            <summary>
+            calcule la frequence d'échantillonnage en fonction du nombre d'échantillons et de la durée du signal
+            sampling frequency of Fe Hz   
+            </summary>
+            <param name="Nbechant">Nbechant : nombre de points (échantillons) dans la fenetre</param>
+            <param name="Freq"> : Frequence du signal (en Herz) </param>
+            <param name="Duree"> : longueur de la fenetre d'echantillonnage (en secondes) </param>
+            <returns>  : Fréquence d'echantillonnage  (en Herz)   </returns>
+        </member>
+        <member name="M:FFTlib.DFT.DFTv1(FFTlib.complex[])">
+            <summary>
+            calcul de DFT (discrete Fourier Transform)
+            version avec argument en entree de " type complex[] "
+            </summary>
+            <param name="x"> x[] : array of complex values </param>
+            <returns>  DFT[] array of complex values  </returns> 
+        </member>
+        <member name="M:FFTlib.DFT.DFTv2(System.Single[])">
+             <summary>
+             calcul de DFT (discrete Fourier Transform)
+             version avec argument en entree de " type float[] "
+             avec type Complex defini dans System.Numerics
+            argument en entree : 
+                  x[] : Tableau des points echantillonés temporellement
+             argument en sortie : 
+                  tableau des resultats sous forme de nombres complexes : Tc[N] : Re + i.Im
+             </summary> 
+             <param name="x"> x[] : array of (float) values on which DFT has to be performed </param>
+             <returns>  DFT[] array of (complex) values DFT </returns>  
+        </member>
+        <member name="M:FFTlib.DFT.DFTv2(System.Decimal[])">
+             <summary>
+             calcul de DFT (discrete Fourier Transform) sur N points
+             version avec argument en entree de " type decimal[] "
+             avec type Complex defini dans System.Numerics
+            argument en entree : 
+                  x[] : Tableau des points echantillonés temporellement
+             argument en sortie : 
+                  tableau des resultats sous forme de nombres complexes : Tc[N] : Re + i.Im
+             </summary>
+             <param name="x"> x[] : array of (decimal) values on which DFT has to be performed </param>
+             <returns>  DFT[] array of (complex) values DFT </returns>  
+        </member>
+        <member name="M:FFTlib.DFT.DFTv2(System.Double[])">
+             <summary>
+             calcul de DFT (discrete Fourier Transform) sur N points
+             version avec argument en entree de " type double[] "
+             avec type Complex defini dans System.Numerics
+            argument en entree : 
+                  x[] : Tableau des points echantillonés temporellement
+             argument en sortie : 
+                  tableau des resultats sous forme de nombres complexes : Tc[N] : Re + i.Im
+             </summary>
+             <param name="x"> x[] : array of (double) values on which DFT has to be performed </param>
+             <returns>  DFT[] array of (complex) values DFT </returns>   
+        </member>
+        <member name="M:FFTlib.DFT.DFTvp(System.Double[],System.Double[],System.Double[])">
+             <summary>
+             calcul de DFT (discrete Fourier Transform) sur N points
+             version avec argument en entree de " type double[] "
+             avec type Complex defini dans System.Numerics
+            argument en entree : 
+                  double Ti[] : Tableau des points echantillonés temporellement
+             argument en sortie : 
+                  tableau des resultats partie Reelle :  double Re[N]    : x
+                  tableau des resultats partie Imaginaire : double Im[N] : y 
+                  x + i.y
+             </summary>
+             <param name="Ti"> Ti[] : array of (double) values on which DFT has to be performed </param>
+             <param name="Re"> Re[] : array of (double) returning the Real part of the DFT </param>  
+             <param name="Im"> Im[] : array of (double) returning the Imaginary part of the DFT </param>  
+        </member>
+        <member name="M:FFTlib.DFT.DspMagnDo(System.Numerics.Complex[])">
+             <summary>
+            Magnitude du signal ( module du signal)
+            argument en emtree : 
+                      tableau de valeurs complexes : x + i.y
+             argument en sortie :
+                      tableau des modules ( SQRT(x*x + y*y))
+                      type : double
+             </summary>
+             <param name="Cmp"> Cmp[] : array of (Complex) values on which DFT Magnitude has to be calculated </param>
+             <returns>  Ds[] array of (double) values representing Magnitude of the DFT </returns> 
+        </member>
+        <member name="M:FFTlib.DFT.DspMagnDec(System.Numerics.Complex[])">
+             <summary>
+            Magnitude du signal ( module du signal)
+            argument en emtree : 
+                      tableau de valeurs complexes : x + i.y
+                     type : Complexe
+             argument en sortie :
+                      tableau des modules ( SQRT(x*x + y*y))
+                      type " decimal
+             </summary>
+             <param name="Cmp"> Cmp[] : array of (Complex) values on which DFT Magnitude has to be calculated </param>
+             <returns>  Ds[] array of (decimal) values representing Magnitude of the DFT </returns> 
+        </member>
+        <member name="M:FFTlib.DFT.DspMagnFlot(System.Numerics.Complex[])">
+             <summary>
+            MAgnitude du signal ( module du signal)
+            argument en emtree : 
+                      tableau de valeurs complexes : x + i.y
+                      type : Complexe
+             argument en sortie :
+                      tableau des modules ( SQRT(x*x + y*y))
+                      type " float
+             </summary> 
+             <param name="Cmp"> Cmp[] : array of (Complex) values on which DFT Magnitude has to be calculated </param>
+             <returns>  Ds[] array of (float) values representing Magnitude of the DFT </returns> 
+        </member>
+        <member name="M:FFTlib.DFT.DFT256(System.Single[],System.Decimal[],System.Decimal[])">
+            <summary>
+            Obtention de DFT (discrete Fourier Transform)
+            version avec argument en entree de " type float[] "
+            avec type Complex defini dans System.Numerics
+            arguments en sortie : 
+                 tableau des resultats sous forme de nombre complexe : Tc[256] : Re + i.Im
+                 tableau des parties imaginaires :  Im[256]
+                 tableau des parties Réelles :  Re[256]
+            </summary> 
+            <param name="y">   y[] : array of 256 (float) values on which DFT has to be performed </param>
+            <param name="Re"> Re[] : array of 256 (decimal) returning the Real part of the DFT </param>  
+            <param name="Im"> Im[] : array of 256 (decimal) returning the Imaginary part of the DFT </param>  
+            <returns>  Tc[] array of 256 (complex) values DFT </returns>    
+        </member>
+        <member name="M:FFTlib.DFT.DFT256(System.Decimal[],System.Decimal[],System.Decimal[])">
+            <summary>
+            Obtention de DFT (discrete Fourier Transform)
+            version avec argument en entree de " type decimal[] "
+            avec type Complex defini dans System.Numerics
+            arguments en sortie : 
+                 tableau des resultats sous forme de nombre complexe : Tc[256] : Re + i.Im
+                 tableau des parties imaginaires :  Im[256]
+                 tableau des parties Réelles :  Re[256]
+            </summary> 
+            <param name="y">  y[] : array of 256 (decimal) values on which DFT has to be performed </param>
+            <param name="Re"> Re[] : array of 256 (decimal) returning the Real part of the DFT </param>  
+            <param name="Im"> Im[] : array of 256 (decimal) returning the Imaginary part of the DFT </param>  
+            <returns>  Tc[] array of 256 (complex) values DFT </returns>    
+        </member>
+        <member name="M:FFTlib.DFT.DFTN(System.Decimal[],System.Decimal[],System.Decimal[])">
+            <summary>
+            Obtention de DFT (discrete Fourier Transform)
+            version avec argument en entree de " type decimal[] "
+            avec type Complex defini dans System.Numerics
+            arguments en sortie : 
+                 tableau des resultats sous forme de nombre complexe : Tc[N] : Re + i.Im
+                 tableau des parties imaginaires :  Im[N]
+                 tableau des parties Réelles :  Re[N]
+            </summary> 
+            <param name="y">  y[] : array of (decimal) values on which DFT has to be performed </param>
+            <param name="Re"> Re[] : array of (decimal) returning the Real part of the DFT </param>  
+            <param name="Im"> Im[] : array of (decimal) returning the Imaginary part of the DFT </param>  
+            <returns>  Tc[] array of (complex) values DFT </returns>    
+        </member>
+        <member name="M:FFTlib.DFT.DFTN(System.Single[],System.Decimal[],System.Decimal[])">
+            <summary>
+            Obtention de DFT (discrete Fourier Transform) calculé sur N points
+            version avec argument en entree de " type float[] "
+            avec type Complex defini dans System.Numerics
+            arguments en sortie : 
+                 tableau des resultats sous forme de nombre complexe : Tc[N] : Re + i.Im
+                 tableau des parties imaginaires :  Im[N]
+                 tableau des parties Réelles :  Re[N]
+            </summary>
+            <param name="y">  y[] : array of (float) values on which DFT has to be performed </param>
+            <param name="Re"> Re[] : array of (decimal) returning the Real part of the DFT </param>  
+            <param name="Im"> Im[] : array of (decimal) returning the Imaginary part of the DFT </param>  
+            <returns>  Tc[] array of (complex) values DFT </returns>   
+        </member>
+        <member name="M:FFTlib.DFT.DFTN(System.Double[],System.Decimal[],System.Decimal[])">
+            <summary>
+            Obtention de DFT (discrete Fourier Transform) calculé sur N points
+            version avec argument en entree de " type double[] "
+            avec type Complex defini dans System.Numerics
+            arguments en sortie : 
+                 tableau des resultats sous forme de nombre complexe : Tc[N] : Re + i.Im
+                 tableau des parties imaginaires :  Im[N]
+                 tableau des parties Réelles :  Re[N]
+            </summary>
+            <param name="y">  y[] : array of (double) values on which DFT has to be performed </param>
+            <param name="Re"> Re[] : array of (decimal) returning the Real part of the DFT </param>  
+            <param name="Im"> Im[] : array of (decimal) returning the Imaginary part of the DFT </param>  
+            <returns>  Tc[] array of (complex) values DFT </returns>   
+        </member>
+        <member name="T:FFTlib.FFT">
+            <summary>
+            FFT
+            </summary>
+        </member>
+        <member name="M:FFTlib.FFT.FFT256(System.Decimal[])">
+            <summary>
+            Calcul dune FFT sur un tableau de 256 points 
+            </summary>
+        </member>
+        <member name="M:FFTlib.FFT.FFT512(System.Double[])">
+            <summary>
+            Calcul dune FFT sur un tableau de 512 points Selon l'algorithme de  Cooley–Tukey
+            </summary>
+            <param name="Y">  Y[] : array of 512 (double) values on which FFT has to be performed </param>
+            <returns>  Tc[] array of 512 (complex) values of FFT </returns> 
+        </member>
+        <member name="M:FFTlib.FFT.FFT512(System.Decimal[])">
+            <summary>
+            Calcul dune FFT sur un tableau de 512 points Selon l'algorithme de  Cooley–Tukey
+            </summary>
+            <param name="Y">  Y[] : array of 512 (decimal) values on which FFT has to be performed </param>
+            <returns>  Tc[] array of 512 (complex) values of FFT </returns> 
+        </member>
+        <member name="M:FFTlib.FFT.FFT1024(System.Double[])">
+            <summary>
+            Calcul dune FFT sur un tableau de 1024 points Selon l'algorithme de  Cooley–Tukey 
+            </summary>
+            <param name="Y">  Y[] : array of 1024 (double) values on which FFT has to be performed </param>
+            <returns>  Tc[] array of 1024 (complex) values of FFT </returns> 
+        </member>
+        <member name="M:FFTlib.FFT.FFT1024(System.Decimal[])">
+            <summary>
+            Calcul dune FFT sur un tableau de 1024 points Selon l'algorithme de  Cooley–Tukey 
+            </summary>
+            <param name="Y">  Y[] : array of 1024 (decimal) values on which FFT has to be performed </param>
+            <returns>  Tc[] array of 1024 (complex) values of FFT </returns> 
+        </member>
+        <member name="M:FFTlib.FFT.FFTN(System.Double[])">
+            <summary>
+            Calcul dune FFT sur un tableau de N points Selon l'algorithme de  Cooley–Tukey 
+            </summary>
+            <param name="Y">  y[] : array of (double) values on which FFT has to be performed </param>
+            <returns>  Tc[] array of (complex) values of FFT </returns> 
+        </member>
+        <member name="M:FFTlib.FFT.FFTN(System.Decimal[])">
+            <summary>
+            Calcul dune FFT sur un tableau de N points Selon l'algorithme de  Cooley–Tukey 
+            </summary>
+            <param name="Y">  y[] : array of (decimal) values on which FFT has to be performed </param>
+            <returns>  Tc[] array of (complex) values of FFT </returns> 
+        </member>
         <member name="T:FFTlib.SiTest">
             <summary>
             routines de Tests . permettant de generer des tableaux de signaux de test
@@ -12,7 +255,8 @@
         <member name="M:FFTlib.SiTest.Nbechant(System.Double,System.Double)">
             <summary>
             calcule le nombre de points a echantillonner en fonction de la frequence d'échantillonnageet de la durée du signal
-            ------échantillonnage de 1 points toutes les 1/freq secondes 
+            ------échantillonnage de 1 points toutes les 1/freq secondes
+            Limitation a 1024 points
             </summary>
             <param name="Freq">: Frequence d'echantillonnage  (en Herz) </param>
             <param name="Creneau"> : longueur de la fenetre d'echantillonnage (en secondes) </param>
@@ -141,6 +385,11 @@
             <param name="n">Nombre de points a générer </param>
             <returns> Ys[] : Tableau de n points qui constitue le signal     </returns>
         </member>
+        <member name="T:FFTlib.DSP">
+            <summary>
+            Class for Powr Spectral Density ( Densité spectrale de puissance)
+            </summary>
+        </member>
         <member name="M:FFTlib.DSP.Dspdoub(System.Numerics.Complex[])">
              <summary>
             classe pour la Densite Spectrale de Puissance (DSP)
@@ -149,17 +398,113 @@
              </summary>
              <summary>
             Desnsité spectrale de puissance du signal ( module au carré du signal)
+            argument en entrée : Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
+            argument en sortie : Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
+             </summary>
+             <param name="Cmp"> tableau des valeurs complexes : x + i.y d'une transformée de Fourier  </param>
+             <returns> Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée </returns>
+        </member>
+        <member name="M:FFTlib.DSP.Dspflot(System.Numerics.Complex[])">
+             <summary>
+            Desnsité spectrale de puissance du signal ( module au carré du signal)
             argument en entrée : 
                       Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
-                      Type : complexe
              argument en sortie :
                       Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
-                      type : double
+                      type : float
              </summary>
-             <param name="freq">
-             </param>
-             <returns>
-             </returns>
+             <param name="Cmp"> Cmp[] tableau des valeurs complexes : x + i.y d'une transformée de Fourier  </param>
+             <returns> Ts[] : tableau des modules elevés au carré (x*x + y*y)) de la transformée </returns>
+        </member>
+        <member name="M:FFTlib.DSP.Dspdeci(System.Numerics.Complex[])">
+             <summary>
+            Densité spectrale de puissance du signal ( module au carré du signal)
+            argument en entrée : 
+                      Cmp : tableau des valeurs complexes : x + i.y d'une transformée de Fourier
+             argument en sortie :
+                      Ts : tableau des modules elevés au carré (x*x + y*y)) de la transformée
+                      type : decimal
+             </summary>
+             <param name="Cmp"> Cmp[] tableau des valeurs complexes : x + i.y d'une transformée de Fourier  </param>
+             <returns> Ts[] : tableau des modules elevés au carré (x*x + y*y)) de la transformée </returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:FFTlib.DSP.Ds2(System.Numerics.Complex[],System.Decimal[])" -->
+        <member name="T:FFTlib.Fenetre">
+            <summary>
+            Fenetres pour DFT ou FFT
+            </summary>
+        </member>
+        <member name="F:FFTlib.Fenetre.PI">
+            <summary>
+            Valeur de pi pi = 3.14116...........  
+            </summary>
+        </member>
+        <member name="M:FFTlib.Fenetre.Hamming(System.Int32)">
+            <summary>
+            Fenetre de Hamming :  0.54 - 0.46*cos(2.pi.t/T)  
+            </summary>
+            <param name="nbechant"> nombre de points de la fenetre  </param>
+            <returns> Xs[] : tableau des valeurs (type : double) de la fenetre de Hamming </returns>
+        </member>
+        <member name="M:FFTlib.Fenetre.HammingD(System.Int32)">
+            <summary>
+            Fenetre de Hamming :  0.54 - 0.46*cos(2.pi.t/T)  
+            </summary>
+            <param name="nbechant"> nombre de points de la fenetre  </param>
+            <returns> Xs[]  : tableau des valeurs (type : decimal) de la fenetre de Hamming </returns>
+        </member>
+        <member name="M:FFTlib.Fenetre.Hanning(System.Int32)">
+            <summary>
+            Fenetre de Hanning :  0.5  – 0.5 * cos(2.pi.t/T)
+            </summary>
+            <param name="nbechant"> nombre de points de la fenetre  </param>
+            <returns> Xs : tableau des valeurs de la fenetre de Hanning </returns>
+        </member>
+        <member name="M:FFTlib.Fenetre.HanningD(System.Int32)">
+            <summary>
+            Fenetre de Hanning :  0.5  – 0.5 * cos(2.pi.t/T)
+            </summary>
+            <param name="nbechant"> nombre de points de la fenetre  </param>
+            <returns> Xs[] : tableau des valeurs (type : decimal) de la fenetre de Hanning </returns>
+        </member>
+        <member name="M:FFTlib.Fenetre.Blackman(System.Int32)">
+            <summary>
+            Fenetre de Blackman :  0.42  – 0.5 * cos(2pt/T) + 0.08 * cos(4pt/T)
+            </summary>
+            <param name="nbechant"> nombre de points de la fenetre  </param>
+            <returns> Xs : tableau des valeurs de la fenetre de Blackman </returns>
+        </member>
+        <member name="M:FFTlib.Fenetre.Flattop(System.Int32)">
+            <summary>
+            Fenetre Flattop : 0.281 + 0.521 * cos(2.pi.t/T) + 0.198 *cos(4.pi.t/T)
+            </summary>
+            <param name="nbechant"> nombre de points de la fenetre  </param>
+            <returns> Xs : tableau des valeurs de la fenetre de Flattop </returns>
+        </member>
+        <member name="T:FFTlib.Fich">
+            <summary>
+            Classe dédiée aux fichiers 
+            </summary>
+        </member>
+        <member name="M:FFTlib.Fich.StoficSign(System.Decimal[],System.String,System.Double,System.Int32)">
+             <summary>
+            stockage des données de calcul d'une DFT ou d'un signal de Test dans un ficher au format texte.
+             tableau Xi[] au format decimal
+             </summary> 
+             <param name="Xi"> donnees DFT ou signal de base  </param>
+             <param name="Name"> nom du fichier de données  </param>
+             <param name="Fe"> frequence dechantillonnage (en Hz) </param> 
+             <param name="nbechant"> nombre d'échantillons(en Hz) </param> 
+        </member>
+        <member name="M:FFTlib.Fich.StoficSign(System.Double[],System.String,System.Double,System.Int32)">
+             <summary>
+            stockage des données de calcul d'une DFT ou d'un signal de Test dans un ficher au format texte.
+             tableau Xi[] au format decimal
+             </summary> 
+             <param name="Xi"> donnees DFT ou signal de base  </param>
+             <param name="Name"> nom du fichier de données  </param>
+             <param name="Fe"> frequence dechantillonnage (en Hz) </param> 
+             <param name="nbechant"> nombre d'échantillons(en Hz) </param> 
         </member>
     </members>
 </doc>

@@ -525,51 +525,301 @@ namespace FFTlib
         }
 
         /// <summary>
-        /// Calcul dune FFT sur un tableau de 512 points 
+        /// Calcul dune FFT sur un tableau de 512 points Selon l'algorithme de  Cooley–Tukey
         /// </summary>
-        public static decimal[] FFT512(decimal[] y)
+        /// <param name="Y">  Y[] : array of 512 (double) values on which FFT has to be performed </param>
+        /// <returns>  Tc[] array of 512 (complex) values of FFT </returns> 
+        public static Complex[] FFT512(double[] Y)
         {
-            //calcul de la FFT surle tableau entrant y[]
-            decimal[] T = new decimal[512];
-            //resultant sortant dans le tableau T[]
-            return T;
+            //calcul de la FFT surle tableau entrant Y[]
+            //resultant sortant dans le tableau Tc[]
+
+            int N = Y.Length;
+            if (N > 512)
+            {
+                Console.WriteLine("nombre de points doit etre <= 512");
+                Console.WriteLine("FFT sera calcul sur 512 points seulement");
+            }
+
+            Complex[] Tc = new Complex[512];    // résultat de la FFT
+            Complex[] Ec = new Complex[256];  // Even (pair) 
+            Complex[] Oc = new Complex[256];  // Od (impair)
+
+            double[] E = new double[256];
+            double[] O = new double[256];
+            double Re, Im;
+
+            for (int k = 0; k < 256; k++)
+            {
+                E[k] = Y[2*k];
+                O[k] = Y[(2*k) + 1];
+            }
+            Ec = DFT.DFTv2(E);    // Ec ( Even - pair) DFT of Even indexed pat of signal          
+            Oc = DFT.DFTv2(O);    // Odd ( Odd - impair) DFT of Odd indexed pat of signal 
+
+            for (int k = 0; k < 256; k++)
+            {
+                Complex temp;
+                Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)1024));
+                Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)1024));
+                temp = new Complex(Re, Im);
+                Oc[k] = Oc[k] * temp;
+            }
+
+            for (int k = 0; k < 256; k++)
+            {
+                Tc[k] = Ec[k] + Oc[k];            // Tc[k] = Ec[k] + exp(-2.i.pi.k/N).Oc[k]
+                Tc[k + (N / 2)] = Ec[k] - Oc[k];    // Tc[k+N/2] = Ec[k] - exp(-2.i.pi.k/N).Oc[k]
+            }
+
+            return Tc;
         }
 
         /// <summary>
-        /// Calcul dune FFT sur un tableau de 1024 points 
+        /// Calcul dune FFT sur un tableau de 512 points Selon l'algorithme de  Cooley–Tukey
         /// </summary>
-        public static decimal[] FFT1024(decimal[] y)
+        /// <param name="Y">  Y[] : array of 512 (decimal) values on which FFT has to be performed </param>
+        /// <returns>  Tc[] array of 512 (complex) values of FFT </returns> 
+        public static Complex[] FFT512(decimal[] Y)
         {
-            //calcul de la FFT surle tableau entrant y[]
-            decimal[] T = new decimal[1024];
-            //resultant sortant dans le tableau T[]
+            //calcul de la FFT surle tableau entrant Y[]
+            //resultant sortant dans le tableau Tc[]
 
-            // code en deveopement 
-            // prochaine version a venir
-            //-----------------------------------
-            //*****************************************8
-            return T;
+            int N = Y.Length;
+            if (N > 512)
+            {
+                Console.WriteLine("nombre de points doit etre <= 512");
+                Console.WriteLine("FFT sera calcul sur 512 points seulement");
+            }
+
+            Complex[] Tc = new Complex[512];    // résultat de la FFT
+            Complex[] Ec = new Complex[256];  // Even (pair) 
+            Complex[] Oc = new Complex[256];  // Od (impair)
+
+            decimal[] E = new decimal[256];
+            decimal[] O = new decimal[256];
+            double Re, Im;
+
+            for (int k = 0; k < 256; k++)
+            {
+                E[k] = Y[2*k];
+                O[k] = Y[(2*k) + 1];
+            }
+            Ec = DFT.DFTv2(E);    // Ec ( Even - pair) DFT of Even indexed pat of signal          
+            Oc = DFT.DFTv2(O);    // Odd ( Odd - impair) DFT of Odd indexed pat of signal 
+
+            for (int k = 0; k < 256; k++)
+            {
+                Complex temp;
+                Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)1024));
+                Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)1024));
+                temp = new Complex(Re, Im);
+                Oc[k] = Oc[k] * temp;
+            }
+
+            for (int k = 0; k < 256; k++)
+            {
+                Tc[k] = Ec[k] + Oc[k];            // Tc[k] = Ec[k] + exp(-2.i.pi.k/N).Oc[k]
+                Tc[k + (N / 2)] = Ec[k] - Oc[k];    // Tc[k+N/2] = Ec[k] - exp(-2.i.pi.k/N).Oc[k]
+            }
+
+            return Tc;
         }
 
         /// <summary>
-        /// Calcul dune FFT sur un tableau de N points 
+        /// Calcul dune FFT sur un tableau de 1024 points Selon l'algorithme de  Cooley–Tukey 
         /// </summary>
-        public static decimal[] FFTN(decimal[] y)
+        /// <param name="Y">  Y[] : array of 1024 (double) values on which FFT has to be performed </param>
+        /// <returns>  Tc[] array of 1024 (complex) values of FFT </returns> 
+        public static Complex[] FFT1024(double[] Y)
         {
-            //calcul de la FFT surle tableau entrant y[]
-            decimal[] T = new decimal[y.Length];
-            //resultant sortant dans le tableau T[]
+            //calcul de la FFT surle tableau entrant Y[]
+            //resultant sortant dans le tableau Tc[]
 
-            // code en deveopement 
-            // prochaine version a venir
-            //-----------------------------------
-            //*****************************************8
+            int N = Y.Length;
+            if (N > 1024)
+            {
+                Console.WriteLine("nombre de points doit etre <= 1024");
+                Console.WriteLine("FFT sera calculé sur 1024 points seulement");
+            }
 
-            return T;
+            Complex[] Tc = new Complex[1024];    // résultat de la FFT
+            Complex[] Ec = new Complex[512];  // Even (pair) 
+            Complex[] Oc = new Complex[512];  // Od (impair)
+
+            double[] E = new double[512];
+            double[] O = new double[512];
+            double Re, Im;
+
+            for (int k = 0; k < 512; k++)
+            {
+                E[k] = Y[2*k];
+                O[k] = Y[(2*k) + 1];
+            }
+            Ec = DFT.DFTv2(E);    // Ec ( Even - pair) DFT of Even indexed pat of signal          
+            Oc = DFT.DFTv2(O);    // Odd ( Odd - impair) DFT of Odd indexed pat of signal 
+
+            for (int k = 0; k < 512; k++)
+            {
+                Complex temp;
+                Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)1024));
+                Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)1024));
+                temp = new Complex(Re, Im);
+                Oc[k] = Oc[k] * temp;
+            }
+
+            for (int k = 0; k < 512; k++)
+            {
+                Tc[k] = Ec[k] + Oc[k];            // Tc[k] = Ec[k] + exp(-2.i.pi.k/N).Oc[k]
+                Tc[k + (N / 2)] = Ec[k] - Oc[k];    // Tc[k+N/2] = Ec[k] - exp(-2.i.pi.k/N).Oc[k]
+            }
+
+            return Tc;
         }
 
-        
-        
+
+        /// <summary>
+        /// Calcul dune FFT sur un tableau de 1024 points Selon l'algorithme de  Cooley–Tukey 
+        /// </summary>
+        /// <param name="Y">  Y[] : array of 1024 (decimal) values on which FFT has to be performed </param>
+        /// <returns>  Tc[] array of 1024 (complex) values of FFT </returns> 
+        public static Complex[] FFT1024(decimal[] Y)
+        {
+            //calcul de la FFT surle tableau entrant Y[]
+            //resultant sortant dans le tableau Tc[]
+
+            int N = Y.Length;
+            if (N > 1024)
+            {   Console.WriteLine("nombre de points doit etre <= 1024");
+                Console.WriteLine("FFT sera calculé sur 1024 points seulement");
+            }  
+
+            Complex[] Tc = new Complex[1024];    // résultat de la FFT
+            Complex[] Ec = new Complex[512];  // Even (pair) 
+            Complex[] Oc = new Complex[512];  // Od (impair)
+
+            decimal[] E = new decimal[512];
+            decimal[] O = new decimal[512];
+            double Re, Im;
+
+            for (int k = 0; k < 512; k++)
+            {
+                E[k] = Y[2*k];
+                O[k] = Y[(2*k) + 1];
+            }
+            Ec = DFT.DFTv2(E);    // Ec ( Even - pair) DFT of Even indexed pat of signal          
+            Oc = DFT.DFTv2(O);    // Odd ( Odd - impair) DFT of Odd indexed pat of signal 
+
+            for (int k = 0; k < 512; k++)
+            {
+                Complex temp;
+                Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)1024));
+                Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)1024));
+                temp = new Complex(Re, Im);
+                Oc[k] = Oc[k] * temp;
+            }
+
+            for (int k = 0; k < 512; k++)
+            {
+                Tc[k] = Ec[k] + Oc[k];            // Tc[k] = Ec[k] + exp(-2.i.pi.k/N).Oc[k]
+                Tc[k + (N / 2)] = Ec[k] - Oc[k];    // Tc[k+N/2] = Ec[k] - exp(-2.i.pi.k/N).Oc[k]
+            }
+
+            return Tc;
+        }
+
+        /// <summary>
+        /// Calcul dune FFT sur un tableau de N points Selon l'algorithme de  Cooley–Tukey 
+        /// </summary>
+        /// <param name="Y">  y[] : array of (double) values on which FFT has to be performed </param>
+        /// <returns>  Tc[] array of (complex) values of FFT </returns> 
+        public static Complex[] FFTN(double[] Y)
+        {
+            //calcul de la FFT surle tableau entrant y[]
+            //resultant sortant dans le tableau Tc[]
+            
+            int N = Y.Length;
+
+            Complex[] Tc = new Complex[N];    // résultat de la FFT
+            Complex[] Ec = new Complex[N/2];  // Even (pair) 
+            Complex[] Oc = new Complex[N/2];  // Od (impair)
+
+            double[] E = new double[N/2];
+            double[] O = new double[N/2];
+            double Re, Im;
+
+            for (int k = 0; k < N/2; k++)
+            {
+                E[k] = Y[2 * k];
+                O[k] = Y[(2 * k) + 1];
+            }
+            Ec = DFT.DFTv2(E);    // Ec ( Even - pair) DFT of Even indexed pat of signal          
+            Oc = DFT.DFTv2(O);    // Odd ( Odd - impair) DFT of Odd indexed pat of signal 
+
+            for (int k = 0; k < N/2; k++)
+            {
+                Complex temp;
+                Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)N));
+                Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)N));
+                temp = new Complex(Re, Im);
+                Oc[k] = Oc[k] * temp;
+            }
+
+            for (int k = 0; k < N/2; k++)
+            {
+                Tc[k] = Ec[k] + Oc[k];            // Tc[k] = Ec[k] + exp(-2.i.pi.k/N).Oc[k]
+                Tc[k + (N/2)] = Ec[k] - Oc[k];    // Tc[k+N/2] = Ec[k] - exp(-2.i.pi.k/N).Oc[k]
+            }
+
+            return Tc;
+        }
+
+        /// <summary>
+        /// Calcul dune FFT sur un tableau de N points Selon l'algorithme de  Cooley–Tukey 
+        /// </summary>
+        /// <param name="Y">  y[] : array of (decimal) values on which FFT has to be performed </param>
+        /// <returns>  Tc[] array of (complex) values of FFT </returns> 
+        public static Complex[] FFTN(decimal[] Y)
+        {
+            //calcul de la FFT surle tableau entrant y[]
+            //resultant sortant dans le tableau Tc[]
+
+            int N = Y.Length;
+
+            Complex[] Tc = new Complex[N];    // résultat de la FFT
+            Complex[] Ec = new Complex[N/2];  // Even (pair) 
+            Complex[] Oc = new Complex[N/2];  // Od (impair)
+
+            decimal[] E = new decimal[N/2];
+            decimal[] O = new decimal[N/2];
+            double Re, Im;
+
+            for (int k = 0; k < N/2; k++)
+            {
+                E[k] = Y[2 * k];
+                O[k] = Y[(2 * k) + 1];
+            }
+            Ec = DFT.DFTv2(E);    // Ec ( Even - pair) DFT of Even indexed pat of signal          
+            Oc = DFT.DFTv2(O);    // Odd ( Odd - impair) DFT of Odd indexed pat of signal 
+
+            for (int k = 0; k < N / 2; k++)
+            {
+                Complex temp;
+                Re = Math.Cos((double)-2 * Math.PI * ((double)k / (double)N));
+                Im = Math.Sin((double)-2 * Math.PI * ((double)k / (double)N));
+                temp = new Complex(Re, Im);
+                Oc[k] = Oc[k] * temp;
+            }
+
+            for (int k = 0; k < N / 2; k++)
+            {
+                Tc[k] = Ec[k] + Oc[k];            // Tc[k] = Ec[k] + exp(-2.i.pi.k/N).Oc[k]
+                Tc[k + (N / 2)] = Ec[k] - Oc[k];    // Tc[k+N/2] = Ec[k] - exp(-2.i.pi.k/N).Oc[k]
+            }
+
+            return Tc;
+        }
+
     }
     
 } 
