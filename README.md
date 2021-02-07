@@ -1,4 +1,6 @@
 # Math-FFT-Lib
+[![FFTlib on fuget.org](https://www.fuget.org/packages/FFTlib/badge.svg)](https://www.fuget.org/packages/FFTlib)
+
 Répertoire de dépôt sur git : https://github.com/guihen01/Math-FFT-Lib.git
 Pour le ploting, c'Est  dire l'Affichage graphique des résultats . J’utilise la librairie que j'ai développé qui est : Math-Plot-Lib
 Langage utilisé : C# 
